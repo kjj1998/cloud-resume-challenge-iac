@@ -56,3 +56,9 @@ variable "s3_redirect_requests_host" {
   type = string
   default = ""
 }
+
+variable "enable_static_website_hosting" {
+  description = "To enable static website hosting"
+  type = bool
+  default = false
+}

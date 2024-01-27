@@ -99,14 +99,14 @@ resource "aws_s3_object" "logs_folder" {
 resource "aws_s3_object" "index" {
   bucket       = module.root_domain_s3_bucket.name
   key          = "resume.html"
-  source       = "./static/resume.html"
+  source       = "../src/resume.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket       = module.root_domain_s3_bucket.name
   key          = "error.html"
-  source       = "./static/error.html"
+  source       = "../src/error.html"
   content_type = "text/html"
 }
 
