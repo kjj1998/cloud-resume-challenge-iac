@@ -19,14 +19,21 @@ jobs:
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
+
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4.0.1
         with:
           role-to-assume: arn:aws:iam::271407076537:role/GitHubAction-AssumeRoleWithAction. #change to reflect your IAM role’s ARN
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
+      
       # Hello from AWS: WhoAmI
       - name: Sts GetCallerIdentity
         run: |
           aws sts get-caller-identity
+
+      - name: Setup Terraform with specified version on the runner
+        uses:  hashicorp/setup-terraform@v3.0.0
+        with:
+          terraform_version: "1.7.0"
 
