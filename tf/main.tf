@@ -5,10 +5,22 @@ terraform {
       version = "5.33.0"
     }
   }
+
+  backend "s3" {
+    key            = "global/s3/terraform.tfstate"
+    bucket         = "terraform-remote-state-3242398"
+    region         = "ap-southeast-1"
+    dynamodb_table = "terraform-remote-locks-3242398"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
   region = var.aws_region
+}
+
+module "remote_state" {
+  source = "./global/aws-s3-remote-state"
 }
 
 module "root_domain_s3_bucket" {
@@ -64,8 +76,8 @@ module "logging_s3_bucket" {
 module "root_domain_alias_record" {
   source = "./modules/aws-route53-static-hosting-record"
 
-  s3_bucket_name    = module.root_domain_s3_bucket.name
-  route53_zone_name = "jjkoh.net"
+  s3_bucket_name             = module.root_domain_s3_bucket.name
+  route53_zone_name          = "jjkoh.net"
   cloudfront_distribution_id = module.static_cloudfront_distribution.id
 }
 
@@ -75,7 +87,7 @@ module "subdomain_alias_record" {
   subdomain_alias_record_status = true
   s3_bucket_name                = module.subdomain_s3_bucket.name
   route53_zone_name             = "jjkoh.net"
-  cloudfront_distribution_id = module.static_cloudfront_distribution.id
+  cloudfront_distribution_id    = module.static_cloudfront_distribution.id
 
   depends_on = [module.root_domain_alias_record]
 }
