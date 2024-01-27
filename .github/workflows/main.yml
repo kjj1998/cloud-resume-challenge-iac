@@ -14,13 +14,20 @@ permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
 jobs:
-  AssumeRoleAndCallIdentity:
+  terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./tf
+
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
 
-      - name: configure aws credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.1
         with:
           role-to-assume: arn:aws:iam::271407076537:role/GitHubAction-AssumeRoleWithAction. #change to reflect your IAM role’s ARN
@@ -36,4 +43,12 @@ jobs:
         uses:  hashicorp/setup-terraform@v3.0.0
         with:
           terraform_version: "1.7.0"
+      
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: Terraform Format
+        run: terraform fmt -check
+      
+      # - name: Terraform init
+      #   id: init
+      #   run: terraform init
 
