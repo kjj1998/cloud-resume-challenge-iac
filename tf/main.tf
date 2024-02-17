@@ -104,10 +104,10 @@ module "static_cloudfront_distribution" {
 module "aws-dynamodb-counter" {
   source = "./modules/aws-dynamodb-counter"
 
-  table_name             = "Music2"
-  hash_key               = "Artist"
+  table_name             = "Counter2"
+  hash_key               = "CounterID"
   hash_key_type          = "S"
-  range_key              = "SongTitle"
+  range_key              = ""
   range_key_type         = "S"
   autoscale_max_capacity = 10
   autoscale_min_capacity = 1
