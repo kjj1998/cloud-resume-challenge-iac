@@ -107,8 +107,6 @@ module "aws-dynamodb-counter" {
   table_name             = "Counter2"
   hash_key               = "CounterID"
   hash_key_type          = "S"
-  range_key              = ""
-  range_key_type         = "S"
   autoscale_max_capacity = 10
   autoscale_min_capacity = 1
   target_utilization     = 70

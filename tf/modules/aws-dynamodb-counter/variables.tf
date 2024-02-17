@@ -11,6 +11,7 @@ variable "hash_key" {
 variable "range_key" {
     description = "Range key"
     type = string
+    default = ""
 }
 
 variable "hash_key_type" {
@@ -21,6 +22,7 @@ variable "hash_key_type" {
 variable "range_key_type" {
     description = "Range key type"
     type = string
+    default = ""
 }
 
 variable "autoscale_max_capacity" {
