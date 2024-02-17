@@ -1,27 +1,27 @@
 resource "aws_dynamodb_table" "table" {
-    name = var.table_name
-    hash_key = var.hash_key
-    range_key = var.range_key
+  name      = var.table_name
+  hash_key  = var.hash_key
+  range_key = var.range_key
 
-    attribute {
-      name = var.hash_key
-      type = var.hash_key_type
-    }
+  attribute {
+    name = var.hash_key
+    type = var.hash_key_type
+  }
 
-    attribute {
-      name = var.range_key
-      type = var.range_key_type
-    }
+  attribute {
+    name = var.range_key
+    type = var.range_key_type
+  }
 
-    billing_mode   = "PROVISIONED"
-    read_capacity  = 5
-    write_capacity = 5
-    table_class = "STANDARD"
+  billing_mode   = "PROVISIONED"
+  read_capacity  = 5
+  write_capacity = 5
+  table_class    = "STANDARD"
 
-    tags = {
-        Name = "dyanmodb-table-1"
-        Environment = "production"
-    }
+  tags = {
+    Name        = "dyanmodb-table-1"
+    Environment = "production"
+  }
 }
 
 resource "aws_appautoscaling_target" "dynamodb_table_read_target" {
