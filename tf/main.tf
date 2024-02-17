@@ -101,6 +101,16 @@ module "static_cloudfront_distribution" {
   default_root_object     = "resume.html"
 }
 
+module "aws-dynamodb-counter" {
+  source = "./modules/aws-dynamodb-counter"
+
+  table_name     = "Music"
+  hash_key       = "Artist"
+  hash_key_type  = "S"
+  range_key      = "SongTitle"
+  range_key_type = "S"
+}
+
 resource "aws_s3_object" "logs_folder" {
   bucket = module.logging_s3_bucket.name
   key    = "logs/"
@@ -121,4 +131,3 @@ resource "aws_s3_object" "error" {
   source       = "../src/error.html"
   content_type = "text/html"
 }
-
