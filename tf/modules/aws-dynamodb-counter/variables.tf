@@ -22,3 +22,13 @@ variable "range_key_type" {
     description = "Range key type"
     type = string
 }
+
+variable "autoscale_max_capacity" {
+    description = "Autoscale maximum capacity"
+    type = string
+}
+
+variable "autoscale_min_capacity" {
+    description = "Autoscale minimum capacity"
+    type = string
+}
