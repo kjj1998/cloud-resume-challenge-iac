@@ -8,8 +8,8 @@ resource "aws_dynamodb_table" "table" {
   }
 
   billing_mode   = "PROVISIONED"
-  read_capacity  = 5
-  write_capacity = 5
+  read_capacity  = var.read_capacity
+  write_capacity = var.write_capacity
   table_class    = "STANDARD"
 
   tags = {

@@ -110,6 +110,8 @@ module "aws-dynamodb-counter" {
   autoscale_max_capacity = 10
   autoscale_min_capacity = 1
   target_utilization     = 70
+  read_capacity = 1
+  write_capacity = 1
 }
 
 resource "aws_s3_object" "logs_folder" {

@@ -39,3 +39,15 @@ variable "target_utilization" {
     description = "The target utilization percentage"
     type = number
 }
+
+variable "read_capacity" {
+  description = "read capacity of the table"
+  default = 1
+  type = number
+}
+
+variable "write_capacity" {
+  description = "write capacity of the table"
+  default = 1
+  type = number
+}
