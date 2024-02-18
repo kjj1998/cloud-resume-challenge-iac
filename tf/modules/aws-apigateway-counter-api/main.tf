@@ -17,7 +17,6 @@ resource "aws_apigatewayv2_integration" "lamda_integration" {
   integration_type = "AWS_PROXY"
 
   connection_type           = "INTERNET"
-  content_handling_strategy = "CONVERT_TO_TEXT"
   description               = "Lambda example"
   integration_method        = "POST"
   integration_uri           = data.aws_lambda_function.existing.invoke_arn
