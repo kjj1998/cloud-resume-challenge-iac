@@ -38,7 +38,7 @@ data "aws_lambda_function" "existing" {
   function_name = "updateViewCountInDynamoDB"
 }
 
-resource "aws_apigatewayv2_integration" "lamda_integration" {
+resource "aws_apigatewayv2_integration" "lambda_integration" {
   api_id           = aws_apigatewayv2_api.lambda.id
   integration_type = "AWS_PROXY"
 
