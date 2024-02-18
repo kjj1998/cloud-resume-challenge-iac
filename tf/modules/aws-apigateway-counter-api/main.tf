@@ -58,12 +58,6 @@ resource "aws_apigatewayv2_integration" "lamda_integration" {
   payload_format_version    = "2.0"
 }
 
-resource "aws_apigatewayv2_stage" "stage" {
-  api_id = aws_apigatewayv2_api.gateway.id
-  name   = "$default"
-  auto_deploy = true
-}
-
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
