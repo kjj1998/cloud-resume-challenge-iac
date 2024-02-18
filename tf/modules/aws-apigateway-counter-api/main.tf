@@ -12,7 +12,7 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 resource "aws_apigatewayv2_stage" "lambda" {
   api_id = aws_apigatewayv2_api.lambda.id
   
-  name = "default stage"
+  name = "test"
   auto_deploy = true
 
   access_log_settings {
