@@ -110,13 +110,13 @@ module "aws-dynamodb-counter" {
   autoscale_max_capacity = 10
   autoscale_min_capacity = 1
   target_utilization     = 70
-  read_capacity = 1
-  write_capacity = 1
+  read_capacity          = 1
+  write_capacity         = 1
 }
 
 module "aws-apigateway-counter-api" {
-  source = "./modules/aws-apigateway-counter-api"
-  api_name = "update-view-count-api-2"
+  source       = "./modules/aws-apigateway-counter-api"
+  api_name     = "update-view-count-api-2"
   api_protocol = "HTTP"
 }
 
