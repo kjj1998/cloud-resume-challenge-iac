@@ -23,7 +23,7 @@ resource "aws_apigatewayv2_integration" "lamda_integration" {
   integration_uri           = data.aws_lambda_function.existing.invoke_arn
   passthrough_behavior      = "WHEN_NO_MATCH"
   timeout_milliseconds      = 30000
-  payload_format_version    = 2.0
+  payload_format_version    = "2.0"
 }
 
 resource "aws_apigatewayv2_stage" "stage" {
