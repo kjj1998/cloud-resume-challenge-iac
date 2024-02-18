@@ -20,7 +20,7 @@ resource "aws_apigatewayv2_integration" "lamda_integration" {
   content_handling_strategy = "CONVERT_TO_TEXT"
   description               = "Lambda example"
   integration_method        = "POST"
-  integration_uri           = aws_lambda_function.existing.invoke_arn
+  integration_uri           = data.aws_lambda_function.existing.invoke_arn
   passthrough_behavior      = "WHEN_NO_MATCH"
   timeout_milliseconds      = 30000
   payload_format_version    = 2.0
