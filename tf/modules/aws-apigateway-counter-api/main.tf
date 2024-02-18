@@ -34,13 +34,6 @@ resource "aws_apigatewayv2_stage" "lambda" {
   }
 }
 
-resource "aws_apigatewayv2_route" "route" {
-  api_id    = aws_apigatewayv2_api.lambda.id
-  
-  route_key = "POST /updateViewCountInDynamoDB"
-  target = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
-}
-
 data "aws_lambda_function" "existing" {
   function_name = "updateViewCountInDynamoDB"
 }
@@ -57,6 +50,15 @@ resource "aws_apigatewayv2_integration" "lamda_integration" {
   timeout_milliseconds      = 30000
   payload_format_version    = "2.0"
 }
+
+
+resource "aws_apigatewayv2_route" "route" {
+  api_id    = aws_apigatewayv2_api.lambda.id
+  
+  route_key = "POST /updateViewCountInDynamoDB"
+  target = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+}
+
 
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
