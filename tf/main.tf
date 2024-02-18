@@ -114,6 +114,12 @@ module "aws-dynamodb-counter" {
   write_capacity = 1
 }
 
+module "aws-apigateway-counter-api" {
+  source = "./modules/aws-apigateway-counter-api"
+  api_name = "update-view-count-api-2"
+  api_protocol = "HTTP"
+}
+
 resource "aws_s3_object" "logs_folder" {
   bucket = module.logging_s3_bucket.name
   key    = "logs/"
