@@ -123,6 +123,7 @@ module "aws-apigateway-counter-api" {
 module "update-view-count-lambda" {
   source        = "./modules/aws-lambda-function"
   function_name = "updateViewCountInDynamoDB2"
+  account_id    = data.aws_caller_identity.current.account_id
 }
 
 resource "aws_s3_object" "logs_folder" {

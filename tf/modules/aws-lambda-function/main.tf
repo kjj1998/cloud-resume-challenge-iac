@@ -40,12 +40,12 @@ resource "aws_iam_policy" "lambda_policy_tf" {
                 "dynamodb:DescribeTable"
             ]
             Effect   = "Allow"
-            Resource = "arn:aws:dynamodb:ap-southeast-1:271407076537:table/*"
+            Resource = "arn:aws:dynamodb:ap-southeast-1:${var.account_id}:table/*"
         },
         {
             Effect: "Allow",
             Action: "logs:CreateLogGroup",
-            Resource: "arn:aws:logs:ap-southeast-1:271407076537:*"
+            Resource: "arn:aws:logs:ap-southeast-1:${var.account_id}:*"
         },
         {
             Effect: "Allow",
@@ -54,7 +54,7 @@ resource "aws_iam_policy" "lambda_policy_tf" {
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:ap-southeast-1:271407076537:log-group:/aws/lambda/updateViewCountInDynamoDB2:*"
+                "arn:aws:logs:ap-southeast-1:${var.account_id}:log-group:/aws/lambda/updateViewCountInDynamoDB2:*"
             ]
         }
     ]
