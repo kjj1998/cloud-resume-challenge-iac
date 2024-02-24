@@ -173,25 +173,25 @@
             // });
 
 
-            // (async () => {
-            //     const rawResponse = await fetch('https://21l5gwok84.execute-api.ap-southeast-1.amazonaws.com/updateViewCountInDynamoDB', {
-            //         method: 'POST',
-            //         headers: {
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json',
-            //         "Origin": "https://jjkoh.net"
-            //         },
-            //         body: JSON.stringify({counter_id: "my-counter"})
-            //     });
-            //     const content = await rawResponse.text();
+            (async () => {
+                const rawResponse = await fetch('https://tw4vwkswdb.execute-api.ap-southeast-1.amazonaws.com/test/updateViewCountInDynamoDB', {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "Origin": "https://jjkoh.net"
+                    },
+                    body: JSON.stringify({counter_id: "my-counter"})
+                });
+                const content = await rawResponse.text();
 
-            //     console.log(content);
+                console.log(content);
 
-            //     const obj = JSON.parse(content)
-            //     console.log(obj.new_view_count)
+                const obj = JSON.parse(content)
+                console.log(obj.new_view_count)
 
-            //     document.getElementById("view-count").innerHTML = `Page View Count: ${obj.new_view_count}`
-            // })();
+                document.getElementById("view-count").innerHTML = `Page Views Count: ${obj.new_view_count}`
+            })();
         </script>
     </body>
 </html>
