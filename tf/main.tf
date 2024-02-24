@@ -120,6 +120,11 @@ module "aws-apigateway-counter-api" {
   api_protocol = "HTTP"
 }
 
+module "update-view-count-lambda" {
+  source = "./modules/aws-lambda-function"
+  function_name = "updateViewCountInDynamoDB2"
+}
+
 resource "aws_s3_object" "logs_folder" {
   bucket = module.logging_s3_bucket.name
   key    = "logs/"
