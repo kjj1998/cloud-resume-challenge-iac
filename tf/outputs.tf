@@ -57,3 +57,15 @@ output "subdomain_alias_record_name" {
   value       = module.subdomain_alias_record.route53_record_name
   description = "Name of the subdomain alias record."
 }
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+
+output "caller_arn" {
+  value = data.aws_caller_identity.current.arn
+}
+
+output "caller_user" {
+  value = data.aws_caller_identity.current.user_id
+}

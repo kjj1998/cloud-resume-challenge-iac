@@ -30,18 +30,33 @@ resource "aws_iam_policy" "lambda_policy_tf" {
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
-      {
-        Action = [
-            "dynamodb:DeleteItem",
-            "dynamodb:GetItem",
-            "dynamodb:PutItem",
-            "dynamodb:Scan",
-            "dynamodb:UpdateItem",
-            "dynamodb:DescribeTable"
-        ]
-        Effect   = "Allow"
-        Resource = "arn:aws:dynamodb:ap-southeast-1:271407076537:table/*"
-      },
+        {
+            Action = [
+                "dynamodb:DeleteItem",
+                "dynamodb:GetItem",
+                "dynamodb:PutItem",
+                "dynamodb:Scan",
+                "dynamodb:UpdateItem",
+                "dynamodb:DescribeTable"
+            ]
+            Effect   = "Allow"
+            Resource = "arn:aws:dynamodb:ap-southeast-1:271407076537:table/*"
+        },
+        {
+            Effect: "Allow",
+            Action: "logs:CreateLogGroup",
+            Resource: "arn:aws:logs:ap-southeast-1:271407076537:*"
+        },
+        {
+            Effect: "Allow",
+            Action: [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:ap-southeast-1:271407076537:log-group:/aws/lambda/updateViewCountInDynamoDB2:*"
+            ]
+        }
     ]
   })
 }

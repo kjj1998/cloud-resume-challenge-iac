@@ -145,3 +145,5 @@ resource "aws_s3_object" "error" {
   source       = "../src/error.html"
   content_type = "text/html"
 }
+
+data "aws_caller_identity" "current" {}
