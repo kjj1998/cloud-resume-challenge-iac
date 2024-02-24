@@ -138,6 +138,7 @@ resource "aws_s3_object" "index" {
   key          = "resume.html"
   source       = "../src/resume.html"
   content_type = "text/html"
+  etag = filemd5("../src/resume.html")
 }
 
 resource "aws_s3_object" "error" {
@@ -145,6 +146,7 @@ resource "aws_s3_object" "error" {
   key          = "error.html"
   source       = "../src/error.html"
   content_type = "text/html"
+  etag = filemd5("../src/error.html")
 }
 
 data "aws_caller_identity" "current" {}
