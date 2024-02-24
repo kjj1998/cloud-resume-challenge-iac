@@ -44,7 +44,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
 }
 
 data "aws_lambda_function" "existing" {
-  function_name = "updateViewCountInDynamoDB"
+  function_name = "updateViewCountInDynamoDB2"
 }
 
 resource "aws_apigatewayv2_integration" "lambda_integration" {
