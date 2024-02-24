@@ -70,7 +70,7 @@ resource "aws_lambda_function" "update_view_count_lambda" {
   filename = "${path.cwd}/scripts/update_view_count.zip"
   function_name = var.function_name
   role = aws_iam_role.lambda_role_tf.arn
-  handler = "main.lambda_handler"
+  handler = "update_view_count.lambda_handler"
   runtime = "python3.12"
   source_code_hash = data.archive_file.update_view_count.output_base64sha256
 }
