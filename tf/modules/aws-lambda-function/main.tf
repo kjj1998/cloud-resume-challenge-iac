@@ -1,7 +1,7 @@
 data "archive_file" "update_view_count" {
   type = "zip"
-  source_dir = "${path.root}/scripts/update_view_count.py"
-  output_path = "${path.root}/scripts/update_view_count.zip"
+  source_file = "${path.cwd}/scripts/update_view_count.py"
+  output_path = "${path.cwd}/scripts/update_view_count.zip"
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -23,9 +23,10 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 
 resource "aws_lambda_function" "update_view_count_lambda" {
-  filename = "${path.root}/scripts/update_view_count.zip"
+  filename = "${path.cwd}/scripts/update_view_count.zip"
   function_name = var.function_name
-  role = aws_iam_role.iam_for_lambda
+  role = aws_iam_role.iam_for_lambda.arn
+  handler = "main.lambda_handler"
   runtime = "python3.12"
   source_code_hash = data.archive_file.update_view_count.output_base64sha256
 }
