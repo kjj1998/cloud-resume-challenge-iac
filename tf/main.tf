@@ -121,7 +121,7 @@ module "aws-apigateway-counter-api" {
 }
 
 module "update-view-count-lambda" {
-  source = "./modules/aws-lambda-function"
+  source        = "./modules/aws-lambda-function"
   function_name = "updateViewCountInDynamoDB2"
 }
 
